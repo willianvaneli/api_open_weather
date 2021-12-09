@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+use Illuminate\Support\Facades\Cache;
 
 class OpenWeatherService 
 {
@@ -11,6 +12,12 @@ class OpenWeatherService
      * @param string $city
      */
     public function currentWeather($city){
+        // VERIFICANDO INFORMAÇÃO EM CACHE
+        $value = Cache::get($city);
+        if($value){
+            return $value;
+        }
+
         // PARAMETROS ADICIONAIS - NÃO OBRIGATÓRIO - CONFIGURADO NO .ENV
         $params = [];
         $params['q'] = $city;
@@ -33,6 +40,8 @@ class OpenWeatherService
         $response = curl_exec($curl);
 
         curl_close($curl);
+
+        Cache::put($city, $response, now()->addMinutes(20));
 
         return $response;
     }

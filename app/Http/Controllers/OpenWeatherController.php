@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Services\OpenWeatherService;
 use App\Http\Requests\OpenWeatherRequest;
 
