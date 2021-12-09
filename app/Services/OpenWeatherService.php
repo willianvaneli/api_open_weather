@@ -14,9 +14,9 @@ class OpenWeatherService
         // PARAMETROS ADICIONAIS - NÃO OBRIGATÓRIO - CONFIGURADO NO .ENV
         $params = [];
         $params['q'] = $city;
-        $params['appid'] = env('OPEN_WEATHER_KEY', 'null');
-        $params['units'] = env('OPEN_WEATHER_UNITS', 'null');
-        $params['lang'] = env('OPEN_WEATHER_LANG', 'null');
+        $params['appid'] = config('OPEN_WEATHER_KEY', 'null');
+        $params['units'] = config('OPEN_WEATHER_UNITS', 'null');
+        $params['lang'] = config('OPEN_WEATHER_LANG', 'null');
         
 
         $url = self::BASE_URL.'?'.http_build_query($params);
