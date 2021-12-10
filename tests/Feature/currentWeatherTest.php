@@ -20,6 +20,10 @@ class currentWeatherTest extends TestCase
 
         $response->assertStatus(200);
 
+        $response->assertJson(fn (AssertableJson $json) =>
+            $json->hasAll('weather','main','timezone','name')->etc()
+        );
+
         
     }
 
