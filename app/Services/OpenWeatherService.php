@@ -47,8 +47,3 @@ class OpenWeatherService
         return $response;
     }
 }
-
-
-
-
-?>

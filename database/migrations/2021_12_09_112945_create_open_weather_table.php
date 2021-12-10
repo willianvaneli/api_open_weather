@@ -18,6 +18,7 @@ class CreateOpenWeatherTable extends Migration
             $table->timestamps();
             $table->string('city')->unique();
             $table->dateTime('last_request')->nullable("false");
+            $table->string('retorno');
         });
     }
 

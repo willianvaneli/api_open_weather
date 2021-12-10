@@ -26,8 +26,13 @@ class currentWeatherTest extends TestCase
 
         
     }
-
-    public function test_t(){
+    
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+    public function test_check_return_openweather_city_null(){
         $response = $this->withoutExceptionHandling()->get('/current_weather?city=null');
         $response->assertJson(fn (AssertableJson $json) =>
             $json->where('message','city not found')->etc()
