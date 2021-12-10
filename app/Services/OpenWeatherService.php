@@ -21,10 +21,10 @@ class OpenWeatherService
         // PARAMETROS ADICIONAIS - NÃO OBRIGATÓRIO - CONFIGURADO NO .ENV
         $params = [];
         $params['q'] = $city;
-        $params['appid'] = config('OPEN_WEATHER_KEY', 'null');
-        $params['units'] = config('OPEN_WEATHER_UNITS', 'null');
-        $params['lang'] = config('OPEN_WEATHER_LANG', 'null');
-        
+        $params['appid'] = config('openWeatherConfig.key', 'null');
+        $params['units'] = config('openWeatherConfig.units', 'null');
+        $params['lang'] = config('openWeatherConfig.lang', 'null');
+
 
         $url = self::BASE_URL.'?'.http_build_query($params);
 
@@ -40,9 +40,10 @@ class OpenWeatherService
         $response = curl_exec($curl);
 
         curl_close($curl);
-
-        Cache::put($city, $response, now()->addMinutes(20));
-
+        
+        if(json_decode($response)->cod = 200)
+            Cache::put($city, $response, now()->addMinutes(20));
+        
         return $response;
     }
 }

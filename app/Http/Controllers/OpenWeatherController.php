@@ -6,7 +6,7 @@ use App\Http\Requests\OpenWeatherRequest;
 
 class OpenWeatherController extends Controller
 {
-    //KEY DE ACESSO A API
+    
     public function currentWeather(OpenWeatherRequest $request){
         
         $city = $request->query('city');
@@ -15,6 +15,7 @@ class OpenWeatherController extends Controller
         }
         
         $openWeather = new OpenWeatherService();
+        
         return $openWeather->currentWeather($city);
     }
 }
